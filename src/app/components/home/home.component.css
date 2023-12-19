@@ -1,0 +1,31 @@
+.home-container {
+  background-color: #f3f2fa;
+  height: 1080px;
+}
+
+.home-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.home-content h1 {
+  font-weight: 700;
+  font-size: 64px;
+}
+
+.categories-buttons {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+.category-button {
+  font-family: "FiraGo", sans-serif;
+  font-weight: 500;
+  padding: 8px 16px 8px 16px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+}
