@@ -1,22 +1,12 @@
-<div class="home-container">
-  <div class="home-content">
-    <h1>ბლოგი</h1>
-    <img
-      src="../../../assets/images/Blog-1024x355 1.png"
-      alt="redberry photo"
-    />
+<div class="blog-container">
+  <div class="categories-buttons">
+    <button
+      *ngFor="let category of categories"
+      class="category-button"
+      [ngStyle]="{ color: category.backgroundColor }"
+    >
+      {{ category.title }}
+    </button>
   </div>
-  <div class="blog-container">
-    <div class="categories-buttons">
-      <button
-        *ngFor="let category of categories"
-        class="category-button"
-        [ngStyle]="{
-          color: category.textColor
-        }"
-      >
-        {{ category.title }}
-      </button>
-    </div>
-  </div>
+  <!-- <button (click)="getBlogs()">blogs</button> -->
 </div>

@@ -8,45 +8,34 @@ import { BlogsService } from 'src/app/services/blogs.service';
 })
 export class HomeComponent implements OnInit {
   categories: any[] = [];
-  blogs: any[] = [];
 
   constructor(private blogsService: BlogsService) {}
 
   ngOnInit(): void {
     this.getCategories();
-    this.getTokenAndBlogs();
   }
 
   getCategories() {
     this.blogsService.getCategories().subscribe({
       next: (data) => {
-        this.categories = data.data.map((category: any) => ({
-          id: category.id,
-          title: category.title,
-          textColor: category.text_color,
-          backgroundColor: category.background_color,
-        }));
+        this.categories = data.data
+          .map((category: any) => ({
+            id: category.id,
+            title: category.title,
+            textColor: category.text_color,
+            backgroundColor: category.background_color,
+          }))
+          .slice(0, 6);
 
         console.log(this.categories);
       },
     });
   }
 
-  getTokenAndBlogs() {
-    this.blogsService.getToken().subscribe({
-      next: (tokenData) => {
-        this.blogsService.authToken = tokenData.token; // Set the obtained token
-        console.log(tokenData);
-        this.getBlogs();
-      },
-    });
-  }
-
   getBlogs() {
     this.blogsService.getBlogs().subscribe({
-      next: (blogsData) => {
-        this.blogs = blogsData.data;
-        console.log(this.blogs);
+      next: (data) => {
+        console.log(data);
       },
     });
   }

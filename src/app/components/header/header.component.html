@@ -1,6 +1,9 @@
 <nav class="header">
   <div class="main-header">
     <img src="../../../assets/images/LOGO-02 3.png" alt="redberry logo" />
-    <button class="login-button">შესვლა</button>
+    <button class="login-button" (click)="toggleLoginDialog()">შესვლა</button>
   </div>
 </nav>
+
+<app-login-dialog *ngIf="blogsService.showDialog"></app-login-dialog>
+<app-login-successful *ngIf="blogsService.showSuccess"></app-login-successful>

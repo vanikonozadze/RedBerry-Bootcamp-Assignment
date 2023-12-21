@@ -6,9 +6,9 @@
 }
 
 .main-header {
-  max-width: 1920px;
   width: 100%;
   margin: 0 auto;
+  padding: 0 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
