@@ -26,3 +26,15 @@
   border: none;
   cursor: pointer;
 }
+
+.add-blog-button {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  border-radius: 8px;
+  color: #fff;
+  background-color: #5d37f3;
+  padding: 10px 20px 10px 20px;
+  border: none;
+  cursor: pointer;
+}

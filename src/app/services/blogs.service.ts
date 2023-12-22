@@ -8,9 +8,10 @@ import { Observable } from 'rxjs';
 export class BlogsService {
   baseApiUrl: string = 'https://api.blog.redberryinternship.ge/api/';
   private token =
-    'ad02bb7bc27651f7458096d5bf7306e45e5eb8f28fb458ace2107e345e6fc2a7';
+    'e40231d8592a0cb975798ea49fea38738412626b2bbb0e07c6837d7f9580a5d3';
   showDialog = false;
   showSuccess = false;
+  showLoggedInUser = false;
 
   constructor(private http: HttpClient) {}
 
@@ -20,6 +21,10 @@ export class BlogsService {
 
   toggleSuccess() {
     this.showSuccess = !this.showSuccess;
+  }
+
+  toggleLogIn() {
+    this.showLoggedInUser = !this.showLoggedInUser;
   }
 
   getCategories(): Observable<any> {

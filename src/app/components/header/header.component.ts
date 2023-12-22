@@ -14,4 +14,8 @@ export class HeaderComponent implements OnInit {
   toggleLoginDialog() {
     this.blogsService.toggleDialog();
   }
+
+  toggleLogIn() {
+    this.blogsService.toggleLogIn();
+  }
 }
