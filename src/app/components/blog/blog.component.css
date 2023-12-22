@@ -1,0 +1,15 @@
+.blog-container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.blog-box {
+  width: 720px;
+  height: 1152px;
+  margin: 0 auto;
+}
+
+.blog-image {
+  width: 720px;
+  height: 328px;
+}

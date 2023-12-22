@@ -1,6 +1,11 @@
 <nav class="header">
   <div class="main-header">
-    <img src="../../../assets/images/LOGO-02 3.png" alt="redberry logo" />
+    <img
+      src="../../../assets/images/LOGO-02 3.png"
+      alt="redberry logo"
+      routerLink=""
+      class="redberry-logo"
+    />
     <button
       class="login-button"
       *ngIf="!this.blogsService.showLoggedInUser"
@@ -8,7 +13,9 @@
     >
       შესვლა
     </button>
-    <button class="add-blog-button" *ngIf="this.blogsService.showLoggedInUser">დაამატე ბლოგი</button>
+    <button class="add-blog-button" *ngIf="this.blogsService.showLoggedInUser">
+      დაამატე ბლოგი
+    </button>
   </div>
 </nav>
 
