@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Blog } from 'src/app/Models/blog.model';
-import { Category } from 'src/app/Models/categorie.model';
+import { Blog } from 'src/app/models/blog.model';
+import { Category } from 'src/app/models/categorie.model';
 import { BlogsService } from 'src/app/services/blogs.service';
 
 @Component({
@@ -22,14 +22,12 @@ export class HomeComponent implements OnInit {
   getCategories() {
     this.blogsService.getCategories().subscribe({
       next: (data) => {
-        this.categories = data.data
-          .map((category: Category) => ({
-            id: category.id,
-            title: category.title,
-            text_color: category.text_color,
-            background_color: category.background_color,
-          }))
-          .slice(0, 6);
+        this.categories = data.data.map((category: Category) => ({
+          id: category.id,
+          title: category.title,
+          text_color: category.text_color,
+          background_color: category.background_color,
+        }));
         console.log(this.categories);
       },
     });

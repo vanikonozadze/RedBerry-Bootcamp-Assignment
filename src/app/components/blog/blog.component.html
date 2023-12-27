@@ -1,15 +1,24 @@
 <div class="blog-container">
-  <!-- <img
+  <img
     src="../../../assets/images/Arrow.png"
     alt="back photo"
     [routerLink]="'/blogs'"
-    style="display: none"
-  /> -->
+    class="back-button"
+  />
   <div class="blog-box">
     <img src="{{ blog.image }}" alt="blog image" class="blog-image" />
     <div class="blog-info">
-      <p>{{ blog.author }}</p>
-      <p>{{ blog.publish_date }} • {{ blog.email }}</p>
+      <p class="blog-author">{{ blog.author }}</p>
+      <p class="blog-date-email">{{ blog.publish_date }} • {{ blog.email }}</p>
+      <p class="blog-title">{{ blog.title }}</p>
     </div>
+    <button
+      class="category-button"
+      *ngFor="let ctgr of blog.categories"
+      [ngStyle]="{ color: ctgr.background_color }"
+    >
+      {{ ctgr.title }}
+    </button>
+    <p class="blog-desc">{{ blog.description }}</p>
   </div>
 </div>

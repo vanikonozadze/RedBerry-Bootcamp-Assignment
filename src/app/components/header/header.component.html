@@ -13,7 +13,11 @@
     >
       შესვლა
     </button>
-    <button class="add-blog-button" *ngIf="this.blogsService.showLoggedInUser">
+    <button
+      class="add-blog-button"
+      *ngIf="this.blogsService.showLoggedInUser"
+      [routerLink]="'/add-blog'"
+    >
       დაამატე ბლოგი
     </button>
   </div>

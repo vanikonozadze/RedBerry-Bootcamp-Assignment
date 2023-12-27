@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Blog } from '../Models/blog.model';
-import { Category } from '../Models/categorie.model';
+import { Blog } from '../models/blog.model';
+import { Category } from '../models/categorie.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +10,7 @@ import { Category } from '../Models/categorie.model';
 export class BlogsService {
   baseApiUrl: string = 'https://api.blog.redberryinternship.ge/api/';
   private token =
-    'f13e2a78e654b8535b6ae710e0e0b9a6d685481adee048fc5e5f771137f69be4';
+    '908f302445d4975be1473a04c42bd4a005b0c0376489a8352ef20283bf6a82fb';
   showDialog = false;
   showSuccess = false;
   showLoggedInUser = false;
@@ -33,8 +33,8 @@ export class BlogsService {
     return this.http.get<Category>(this.baseApiUrl + 'categories');
   }
 
-  login(data: string): Observable<any> {
-    return this.http.post<Blog>(this.baseApiUrl + 'login', data);
+  login(email: string): Observable<any> {
+    return this.http.post<Blog>(this.baseApiUrl + 'login', email);
   }
 
   getBlogs(): Observable<Blog> {
@@ -42,8 +42,20 @@ export class BlogsService {
     return this.http.get<Blog>(this.baseApiUrl + 'blogs', { headers });
   }
 
+  postBlogs(blogData: Blog): Observable<Blog> {
+    const headers = { Authorization: `Bearer ${this.token}` };
+    return this.http.post<Blog>(this.baseApiUrl + 'blogs', blogData, {
+      headers,
+    });
+  }
+
   getBlog(id: string): Observable<Blog> {
     const headers = { Authorization: `Bearer ${this.token}` };
     return this.http.get<Blog>(this.baseApiUrl + 'blogs/' + id, { headers });
+  }
+
+  addBlog(blogData: Blog): Observable<Blog> {
+    blogData.id = '123';
+    return this.http.post<Blog>(this.baseApiUrl + 'blogs', blogData);
   }
 }

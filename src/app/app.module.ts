@@ -10,6 +10,7 @@ import { LoginDialogComponent } from './components/login-dialog/login-dialog.com
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginSuccessfulComponent } from './components/login-successful/login-successful.component';
 import { BlogComponent } from './components/blog/blog.component';
+import { AddBlogComponent } from './components/add-blog/add-blog.component';
 
 @NgModule({
   declarations: [
@@ -19,13 +20,14 @@ import { BlogComponent } from './components/blog/blog.component';
     LoginDialogComponent,
     LoginSuccessfulComponent,
     BlogComponent,
+    AddBlogComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
     ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

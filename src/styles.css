@@ -2,19 +2,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "FiraGo", sans-serif;
 }
 
 body {
   font-family: "FiraGo", sans-serif;
   background-color: #f3f2fa;
-}
-
-@font-face {
-  font-family: "FiraGo";
-  src: url("../src/fonts/FiraGO_WEB_1001/Roman/FiraGO-Bold.woff")
-      format("woff2"),
-    url("../src/fonts/FiraGO_WEB_1001/Italic/FiraGO-BoldItalic.woff")
-      format("woff");
-  font-weight: normal;
-  font-style: normal;
 }

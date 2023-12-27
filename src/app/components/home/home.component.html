@@ -5,33 +5,50 @@
 <div class="blog-container">
   <div class="categories-buttons">
     <button
-      *ngFor="let category of categories"
       class="category-button"
-      [ngStyle]="{ backgroundColor: category.background_color }"
+      *ngFor="let category of categories"
+      [ngStyle]="{
+        backgroundColor: category.background_color,
+        color: category.text_color
+      }"
     >
       {{ category.title }}
     </button>
   </div>
   <div class="blogs-box">
     <div class="blog" *ngFor="let blog of blogs">
-      <img src="../../../assets/images/unsplash_lmCajireIn8.png" alt="" />
+      <img src="{{ blog.image }}" alt="" class="blog-image" />
       <div class="author-date-box">
         <p class="blog-author">{{ blog.author }}</p>
         <p class="blog-date">{{ blog.publish_date }}</p>
       </div>
       <p class="blog-title">{{ blog.title }}</p>
-      <button
-        class="category-button"
-        *ngFor="let ctgr of blog.categories"
-        [ngStyle]="{ backgroundColor: ctgr.background_color }"
-      >
-        {{ ctgr.title }}
-      </button>
+      <div class="category-div">
+        <button
+          class="category-btn"
+          *ngFor="let ctgr of blog.categories"
+          [ngStyle]="{
+            color: ctgr.text_color,
+            backgroundColor: ctgr.background_color
+          }"
+        >
+          {{ ctgr.title }}
+        </button>
+      </div>
       <p class="blog-description">
         6 თვის შემდეგ ყველის ბრმა დეგუსტაციის დროც დადგა. მაქსიმალური
         სიზუსტისთვის, ეს პროცესი...
       </p>
-      <a [routerLink]="'/blogs/' + blog.id"> სრულად ნახვა</a>
+      <div class="see-more-div">
+        <a [routerLink]="'/blogs/' + blog.id"
+          >სრულად ნახვა
+          <img
+            src="../../../assets/images/Arrow (1).png"
+            alt="arrow photo"
+            class="arrow-image"
+          />
+        </a>
+      </div>
     </div>
   </div>
 </div>

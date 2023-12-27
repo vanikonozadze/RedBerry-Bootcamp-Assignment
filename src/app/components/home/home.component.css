@@ -3,6 +3,7 @@
   justify-content: space-around;
   gap: 150px;
   align-items: center;
+  margin-top: 100px;
 }
 
 .home-content h1 {
@@ -12,30 +13,38 @@
 
 .categories-buttons {
   margin-top: 100px;
+  width: 80%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   gap: 24px;
-}
-
-.categories-buttons {
-  margin-top: 100px;
-  display: flex;
-  justify-content: center;
-  gap: 24px;
+  overflow-x: scroll;
+  margin: 70px auto 0 auto;
 }
 
 .category-button {
-  font-family: "FiraGo", sans-serif;
-  font-weight: 500;
-  padding: 8px 16px 8px 16px;
+  border: 2px solid transparent;
+  padding: 8px 16px;
   border-radius: 30px;
-  border: none;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  min-width: min-content;
+  margin-bottom: 5px;
   cursor: pointer;
+}
+
+.category-box {
+  display: flex;
+  gap: 24px;
+  width: 80%;
+  overflow-x: scroll;
+  margin: 70px auto 0 auto;
 }
 
 .blogs-box {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Display 4 items in 1 row */
+  align-items: center;
+  grid-template-columns: repeat(3, 1fr);
   width: 90%;
   margin: 0 auto;
   margin-top: 100px;
@@ -44,11 +53,20 @@
 
 .blog {
   width: 408px;
+  height: 620px;
+  margin-bottom: 60px;
+  margin: 0 auto;
 }
 
 .author-date-box {
   padding-bottom: 20px;
   padding-top: 20px;
+}
+
+.blog-image {
+  width: 408px;
+  height: 328px;
+  border-radius: 10px;
 }
 
 .blog-author {
@@ -62,6 +80,15 @@
   color: #85858d;
 }
 
+.category-div button {
+  margin-bottom: 21px;
+  margin-right: 16px;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: none;
+}
+
 .blog-title {
   font-size: 20px;
   font-weight: 500;
@@ -70,11 +97,27 @@
 }
 
 .blog-description {
-  padding-top: 20px;
+  color: #404049;
+  line-height: 28px;
   margin-bottom: 20px;
   height: 56px;
 }
 
 .see-more-button {
   text-decoration: none;
+}
+
+.see-more-div {
+  display: flex;
+  align-items: center;
+}
+
+.see-more-div a {
+  color: #5d37f3;
+  text-decoration: none;
+}
+
+.arrow-image {
+  position: relative;
+  top: 5px;
 }
