@@ -14,6 +14,7 @@ export class BlogsService {
   showDialog = false;
   showSuccess = false;
   showLoggedInUser = false;
+  atAddBlogPage = false;
 
   constructor(private http: HttpClient) {}
 

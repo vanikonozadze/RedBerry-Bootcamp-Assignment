@@ -94,7 +94,6 @@ export class AddBlogComponent implements OnInit {
           text_color: category.text_color,
           background_color: category.background_color,
         }));
-        console.log(this.categories);
       },
     });
   }

@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginSuccessfulComponent } from './components/login-successful/login-successful.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { AddBlogComponent } from './components/add-blog/add-blog.component';
+import { AddBlogHeaderComponent } from './components/add-blog-header/add-blog-header.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { AddBlogComponent } from './components/add-blog/add-blog.component';
     LoginSuccessfulComponent,
     BlogComponent,
     AddBlogComponent,
+    AddBlogHeaderComponent,
   ],
   imports: [
     BrowserModule,

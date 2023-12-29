@@ -43,7 +43,6 @@ export class BlogComponent implements OnInit {
             next: (response) => {
               this.blog = response;
               this.blogsCategories = this.blog.categories;
-              // console.log(this.blogsCategories);
             },
           });
         }
@@ -55,7 +54,6 @@ export class BlogComponent implements OnInit {
     this.blogsService.getBlogs().subscribe(
       (response) => {
         this.blogs = response.data;
-        // console.log(this.blogs);
       },
       (error) => {
         console.error(error);
