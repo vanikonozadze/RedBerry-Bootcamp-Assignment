@@ -11,6 +11,8 @@ import { BlogsService } from 'src/app/services/blogs.service';
 export class HomeComponent implements OnInit {
   categories: Category[] = [];
   blogs: Blog[] = [];
+  categoryFilter: Blog[] = [];
+  toggledCategories: string[] = [];
 
   constructor(private blogsService: BlogsService) {}
 
@@ -28,7 +30,6 @@ export class HomeComponent implements OnInit {
           text_color: category.text_color,
           background_color: category.background_color,
         }));
-        console.log(this.categories);
       },
     });
   }
@@ -50,8 +51,48 @@ export class HomeComponent implements OnInit {
             background_color: category.background_color,
           })),
         }));
-        console.log(this.blogs);
+        this.categoryFilter = this.blogs;
       },
     });
+  }
+
+  clicked(category: Category): boolean {
+    return this.toggledCategories.includes(category.title);
+  }
+
+  getStyle(category: Category): any {
+    return {
+      'background-color': category.background_color,
+      color: category.text_color,
+      border: this.clicked(category)
+        ? '2px solid black'
+        : '2px solid transparent',
+    };
+  }
+
+  categoriesClicked(category: Category) {
+    const index = this.toggledCategories.indexOf(category.title);
+    console.log(index);
+
+    if (index !== -1) {
+      this.toggledCategories.splice(index, 1);
+    } else {
+      this.toggledCategories.push(category.title);
+    }
+
+    if (this.toggledCategories.length === 0) {
+      this.categoryFilter = this.blogs;
+    } else {
+      this.categoryFilter = this.blogs.filter((blog) =>
+        blog.categories.some((category) =>
+          this.toggledCategories.includes(category.title)
+        )
+      );
+    }
+
+    localStorage.setItem(
+      'toggledCategories',
+      JSON.stringify(this.toggledCategories)
+    );
   }
 }

@@ -7,16 +7,14 @@
     <button
       class="category-button"
       *ngFor="let category of categories"
-      [ngStyle]="{
-        backgroundColor: category.background_color,
-        color: category.text_color
-      }"
+      [ngStyle]="getStyle(category)"
+      (click)="categoriesClicked(category)"
     >
       {{ category.title }}
     </button>
   </div>
   <div class="blogs-box">
-    <div class="blog" *ngFor="let blog of blogs">
+    <div class="blog" *ngFor="let blog of categoryFilter">
       <img src="{{ blog.image }}" alt="" class="blog-image" />
       <div class="author-date-box">
         <p class="blog-author">{{ blog.author }}</p>
@@ -36,8 +34,7 @@
         </button>
       </div>
       <p class="blog-description">
-        6 თვის შემდეგ ყველის ბრმა დეგუსტაციის დროც დადგა. მაქსიმალური
-        სიზუსტისთვის, ეს პროცესი...
+        {{ blog.description }}
       </p>
       <div class="see-more-div">
         <a [routerLink]="'/blogs/' + blog.id"

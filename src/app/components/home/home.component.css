@@ -54,8 +54,8 @@
 .blog {
   width: 408px;
   height: 620px;
-  margin-bottom: 60px;
   margin: 0 auto;
+  margin-bottom: 60px;
 }
 
 .author-date-box {
@@ -97,10 +97,15 @@
 }
 
 .blog-description {
-  color: #404049;
-  line-height: 28px;
+  color: rgba(64, 64, 73, 1);
+  word-break: break-all;
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limit the content to two lines */
+  -webkit-box-orient: vertical;
   margin-bottom: 20px;
-  height: 56px;
 }
 
 .see-more-button {

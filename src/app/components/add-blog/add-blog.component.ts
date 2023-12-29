@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { Blog } from 'src/app/models/blog.model';
 import { Category } from 'src/app/models/categorie.model';
 import { BlogsService } from 'src/app/services/blogs.service';
@@ -16,23 +17,43 @@ export class AddBlogComponent implements OnInit {
     author: '',
     title: '',
     description: '',
-    image: '',
+    image: '', // Change the type to string for a base64 representation
     publish_date: '',
     categories: [],
     email: '',
     data: undefined,
   };
 
-  constructor(private blogsService: BlogsService, private router: Router) {}
+  constructor(
+    private blogsService: BlogsService,
+    private router: Router,
+    private http: HttpClient
+  ) {}
 
   ngOnInit(): void {
     this.getCategories();
+  }
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    this.handleFile(file);
+  }
+
+  handleFile(file: File) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.addBlogData.image = reader.result as string;
+    };
+    reader.readAsDataURL(file);
   }
 
   addBlog() {
     this.blogsService.addBlog(this.addBlogData).subscribe({
       next: (data) => {
         console.log(data);
+      },
+      error: (err) => {
+        console.error(err);
       },
     });
     console.log(this.addBlogData);

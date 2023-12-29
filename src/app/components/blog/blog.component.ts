@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Blog } from 'src/app/models/blog.model';
+import { Category } from 'src/app/models/categorie.model';
 import { BlogsService } from 'src/app/services/blogs.service';
 
 @Component({
@@ -20,6 +21,9 @@ export class BlogComponent implements OnInit {
     email: '',
     data: undefined,
   };
+  blogs: Blog[] = [];
+  blogsCategories: Category[] = [];
+  categoryFilter: Blog[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -28,6 +32,8 @@ export class BlogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getBlogs();
+
     this.route.paramMap.subscribe({
       next: (params) => {
         const id = params.get('id');
@@ -36,11 +42,56 @@ export class BlogComponent implements OnInit {
           this.blogsService.getBlog(id).subscribe({
             next: (response) => {
               this.blog = response;
-              console.log(this.blog);
+              this.blogsCategories = this.blog.categories;
+              // console.log(this.blogsCategories);
             },
           });
         }
       },
     });
+  }
+
+  getBlogs() {
+    this.blogsService.getBlogs().subscribe(
+      (response) => {
+        this.blogs = response.data;
+        // console.log(this.blogs);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  filteredBlogs() {
+    if (this.blogs.length > 0 && this.blogsCategories.length > 0) {
+      this.categoryFilter = this.blogs.filter((blog) => {
+        return this.blogsCategories.some(
+          (category) => category.title === blog.title
+        );
+      });
+    }
+  }
+
+  getRelatedBlogs(): Blog[] {
+    if (this.blog && this.blogs.length > 0) {
+      const relatedBlogs: Blog[] = [];
+
+      this.blogs.forEach((blog) => {
+        if (
+          blog.id !== this.blog.id &&
+          blog.categories.some((category) =>
+            this.blog.categories.some(
+              (blogCategory) => blogCategory.title === category.title
+            )
+          )
+        ) {
+          relatedBlogs.push(blog);
+        }
+      });
+
+      return relatedBlogs;
+    }
+    return [];
   }
 }
