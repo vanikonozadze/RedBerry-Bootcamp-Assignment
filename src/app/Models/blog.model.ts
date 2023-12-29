@@ -1,4 +1,4 @@
-import { Category } from './categorie.model';
+import { Category } from 'src/app/models/categorie.model';
 
 export interface Blog {
   data: any;

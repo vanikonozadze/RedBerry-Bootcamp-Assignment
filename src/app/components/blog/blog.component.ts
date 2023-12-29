@@ -78,9 +78,9 @@ export class BlogComponent implements OnInit {
       this.blogs.forEach((blog) => {
         if (
           blog.id !== this.blog.id &&
-          blog.categories.some((category) =>
+          blog.categories.some((category: Category) =>
             this.blog.categories.some(
-              (blogCategory) => blogCategory.title === category.title
+              (blogCategory: Category) => blogCategory.title === category.title
             )
           )
         ) {

@@ -84,7 +84,7 @@ export class HomeComponent implements OnInit {
       this.categoryFilter = this.blogs;
     } else {
       this.categoryFilter = this.blogs.filter((blog) =>
-        blog.categories.some((category) =>
+        blog.categories.some((category: Category) =>
           this.toggledCategories.includes(category.title)
         )
       );
