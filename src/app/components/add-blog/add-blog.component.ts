@@ -1,9 +1,8 @@
+import { BlogsService } from './../../services/blogs.service';
+import { Category } from './../../models/categorie.model';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Blog } from 'src/app/models/blog.model';
-import { Category } from 'src/app/models/categorie.model';
-import { BlogsService } from 'src/app/services/blogs.service';
 import { FormGroup } from '@angular/forms';
 
 @Component({

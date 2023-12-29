@@ -29,7 +29,7 @@ import { AddBlogHeaderComponent } from './components/add-blog-header/add-blog-he
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
