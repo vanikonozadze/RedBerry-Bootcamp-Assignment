@@ -54,8 +54,11 @@ export class BlogsService {
     return this.http.get<Blog>(this.baseApiUrl + 'blogs/' + id, { headers });
   }
 
-  addBlog(blogData: Blog): Observable<Blog> {
+  addBlog(blogData: any): Observable<any> {
     blogData.id = '123';
-    return this.http.post<Blog>(this.baseApiUrl + 'blogs', blogData);
+    const headers = { Authorization: `Bearer ${this.token}` };
+    return this.http.post<Blog>(this.baseApiUrl + 'blogs', blogData, {
+      headers,
+    });
   }
 }

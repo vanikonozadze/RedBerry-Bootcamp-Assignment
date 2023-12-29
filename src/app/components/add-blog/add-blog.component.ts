@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Blog } from 'src/app/models/blog.model';
 import { Category } from 'src/app/models/categorie.model';
 import { BlogsService } from 'src/app/services/blogs.service';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-add-blog',
@@ -11,15 +12,15 @@ import { BlogsService } from 'src/app/services/blogs.service';
   styleUrls: ['./add-blog.component.css'],
 })
 export class AddBlogComponent implements OnInit {
+  addBlogForm!: FormGroup;
   categories: Category[] = [];
-  addBlogData: Blog = {
+  addBlogData: any = {
     id: '',
     author: '',
     title: '',
     description: '',
-    image: '', // Change the type to string for a base64 representation
+    image: '',
     publish_date: '',
-    categories: [],
     email: '',
     data: undefined,
   };
@@ -48,28 +49,51 @@ export class AddBlogComponent implements OnInit {
   }
 
   addBlog() {
-    this.blogsService.addBlog(this.addBlogData).subscribe({
+    const formData = new FormData();
+    formData.append('author', this.addBlogData.author);
+    formData.append('title', this.addBlogData.title);
+    formData.append('description', this.addBlogData.description);
+    formData.append('publish_date', this.addBlogData.publish_date);
+    formData.append('email', this.addBlogData.email);
+    formData.append('image', this.dataURItoBlob(this.addBlogData.image));
+    const categoryIds = [1, 2, 3];
+    categoryIds.forEach((categoryId) => {
+      formData.append('categories[]', String(categoryId));
+    });
+
+    this.blogsService.addBlog(formData).subscribe({
       next: (data) => {
-        console.log(data);
+        alert('გამოქვეყნდა');
+        this.router.navigate(['blogs']);
       },
       error: (err) => {
         console.error(err);
       },
     });
-    console.log(this.addBlogData);
+  }
+
+  dataURItoBlob(dataURI: string) {
+    const byteString = atob(dataURI.split(',')[1]);
+    const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+
+    return new Blob([ab], { type: mimeString });
   }
 
   getCategories() {
     this.blogsService.getCategories().subscribe({
       next: (data) => {
-        this.categories = data.data
-          .map((category: Category) => ({
-            id: category.id,
-            title: category.title,
-            text_color: category.text_color,
-            background_color: category.background_color,
-          }))
-          .slice(0, 6);
+        this.categories = data.data.map((category: Category) => ({
+          id: category.id,
+          title: category.title,
+          text_color: category.text_color,
+          background_color: category.background_color,
+        }));
         console.log(this.categories);
       },
     });

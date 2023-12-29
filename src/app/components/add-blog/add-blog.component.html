@@ -85,12 +85,7 @@
       </div>
       <div class="category-box">
         <p>კატეგორია *</p>
-        <select
-          id="categories"
-          name="categories"
-          [(ngModel)]="addBlogData.categories"
-          class="category-input"
-        >
+        <select id="categories" name="categories" class="category-input">
           <option [value]="addBlogData.id" *ngFor="let category of categories">
             {{ category.title }}
           </option>
